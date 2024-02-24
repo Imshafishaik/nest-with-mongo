@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get } from "@nestjs/common";
+import { Body, Controller, Post, Get, Param,Query } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { UserDto } from "./dto/user.dto";
 
@@ -18,5 +18,16 @@ export class UserController{
     @Get('/all-users-with-notes')
     getUsersWithNotes(){
         return this.userService.getUsersWithNotes()
+    }
+
+    @Get('/search-users')
+    getSearchedUsers(@Query() search: string){
+        console.log(search)
+        return this.userService.getSearchedUsers(search)
+    }
+
+    @Get('/sort-by-age')
+    getSortByAge(){
+        return this.userService.getSortByAge()
     }
 }

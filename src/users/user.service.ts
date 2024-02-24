@@ -36,4 +36,23 @@ export class UserService{
         // console.log("............usersWithNotes",usersWithNotes);
         
     }
+
+    getSearchedUsers(searchTerm:string){
+        console.log(searchTerm)
+        return this.userModel.aggregate([
+            {
+                $match:{
+                    username: searchTerm.search
+                }
+            }
+        ])
+    }
+
+    getSortByAge(){
+        return this.userModel.aggregate([
+            {
+                $sort:{ myage: -1 }
+            }
+        ])
+    }
 }
